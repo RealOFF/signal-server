@@ -1,0 +1,14 @@
+{
+  "name": "signal-server",
+  "preferGlobal": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "main": "server.js",
+  "license": "MIT",
+  "dependencies": {
+    "ws": "^8.8.1"
+  }
+}
