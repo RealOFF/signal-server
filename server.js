@@ -39,7 +39,7 @@ wss.on('connection', function (connection) {
         console.log("Sending offer to", data.name)
         var conn = users[data.name]
 
-        if (conn != null) {
+        if (conn) {
           connection.otherName = data.name
           sendTo(conn, {
             type: "offer",
@@ -53,7 +53,7 @@ wss.on('connection', function (connection) {
         console.log("Sending answer to", data.name)
         var conn = users[data.name]
 
-        if (conn != null) {
+        if (conn) {
           connection.otherName = data.name
           sendTo(conn, {
             type: "answer",
@@ -66,7 +66,7 @@ wss.on('connection', function (connection) {
         console.log("Sending candidate to", data.name)
         var conn = users[data.name]
 
-        if (conn != null) {
+        if (conn) {
           sendTo(conn, {
             type: "candidate",
             ...data
@@ -77,9 +77,10 @@ wss.on('connection', function (connection) {
       case "leave":
         console.log("Disconnecting user from", data.name)
         var conn = users[data.name]
-        conn.otherName = null
 
-        if (conn != null) {
+        if (conn) {
+          conn.otherName = null
+
           sendTo(conn, {
             type: "leave"
           })
