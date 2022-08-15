@@ -99,6 +99,7 @@ wss.on('connection', function (connection) {
 
   connection.on('close', function () {
     if (connection.name) {
+      console.log(connection.name, 'closed')
       delete users[connection.name]
 
       if (connection.otherName) {
@@ -106,7 +107,7 @@ wss.on('connection', function (connection) {
         var conn = users[connection.otherName]
         conn.otherName = null
 
-        if (conn != null) {
+        if (conn) {
           sendTo(conn, {
             type: "leave"
           })
